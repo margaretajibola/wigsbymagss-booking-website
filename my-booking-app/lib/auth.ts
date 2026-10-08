@@ -2,6 +2,7 @@
 import bcrypt from "bcrypt";
 import jwt, { JwtPayload as DefaultJwtPayload , SignOptions } from "jsonwebtoken";
 import type { JwtPayload } from "@/types/jwt";
+import { AuthenticationError, AuthorizationError } from "@/lib/errors";
 
 const SALT_ROUNDS = 10;
 
@@ -45,5 +46,28 @@ export function verifyJwt(token: string): JwtPayload | null {
   } catch {
     return null;
   }
+}
+
+export function getSessionPayload(req: Request): JwtPayload | null {
+  const cookie = req.headers.get("cookie") ?? "";
+  const match = cookie.match(/session=([^;]+)/);
+  const token = match ? decodeURIComponent(match[1]) : null;
+  if (!token) return null;
+
+  return verifyJwt(token);
+}
+
+export function requireUser(req: Request): JwtPayload {
+  const payload = getSessionPayload(req);
+  if (!payload) throw new AuthenticationError("Authentication required");
+  return payload;
+}
+
+export function requireAdmin(req: Request): JwtPayload {
+  const payload = requireUser(req);
+  if (payload.role !== "admin") {
+    throw new AuthorizationError("Admin access required");
+  }
+  return payload;
 }
 

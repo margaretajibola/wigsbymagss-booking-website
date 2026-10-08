@@ -1,6 +1,7 @@
 // app/api/services/route.ts
 import { NextResponse } from 'next/server';
 import { prisma } from "@/lib/prisma";
+import { requireAdmin } from "@/lib/auth";
 import { ValidationError, DatabaseError, handleApiError } from "@/lib/errors";
 
 export async function GET(req: Request) {
@@ -21,8 +22,9 @@ export async function GET(req: Request) {
 
 export async function POST(req: Request) {
   try {
+    requireAdmin(req);
     const data = await req.json();
-    
+
     if (!data.name || !data.price) {
       throw new ValidationError('Name and price are required');
     }

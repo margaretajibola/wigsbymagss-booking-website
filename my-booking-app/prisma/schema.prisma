@@ -1,32 +1,31 @@
-// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-generator client {
-  provider = "prisma-client-js"
-}
-
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
   password  String
   name      String?
-  role      String   @default("user")
-  createdAt DateTime @default(now())
+  role      String    @default("user")
+  createdAt DateTime  @default(now())
   bookings  Booking[]
 }
 
 model Service {
-  id          Int      @id @default(autoincrement())
-  name        String
-  price       Float
-  category    String   // e.g. "  Installations", "Sewins", "Others"
-  extraNotes       String?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  bookings    Booking[]
+  id         Int       @id @default(autoincrement())
+  name       String
+  price      Float
+  category   String
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  extraNotes String?
+  bookings   Booking[]
 }
 
 model Booking {
@@ -35,27 +34,24 @@ model Booking {
   serviceId Int
   date      DateTime
   time      String
-  notes     String?
   status    String   @default("confirmed")
   createdAt DateTime @default(now())
-  
-  user      User     @relation(fields: [userId], references: [id])
+  notes     String?
   service   Service  @relation(fields: [serviceId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
 }
 
 model Availability {
   id        Int      @id @default(autoincrement())
-  date      DateTime @db.Date
+  date      DateTime @unique @db.Date
   timeSlots String[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  
-  @@unique([date])
 }
 
 model Review {
-  id          Int      @id @default(autoincrement())
-  text        String
-  image       String?
-  createdAt   DateTime  @default(now())
+  id        Int      @id @default(autoincrement())
+  text      String
+  image     String?
+  createdAt DateTime @default(now())
 }

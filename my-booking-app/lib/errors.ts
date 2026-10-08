@@ -57,6 +57,22 @@ export function handleApiError(error: unknown) {
     );
   }
 
+  // Prisma: transaction write conflict/serialization failure under concurrent load
+  if (typeof error === 'object' && error !== null && 'code' in error && error.code === 'P2034') {
+    return Response.json(
+      { error: 'That slot was just booked by someone else. Please pick another time.' },
+      { status: 409 }
+    );
+  }
+
+  // Prisma: foreign key constraint violation (e.g. deleting a service with existing bookings)
+  if (typeof error === 'object' && error !== null && 'code' in error && error.code === 'P2003') {
+    return Response.json(
+      { error: 'This action conflicts with related data and cannot be completed.' },
+      { status: 409 }
+    );
+  }
+
   console.error('Unexpected error:', error);
   return Response.json(
     { error: 'Internal server error' },
