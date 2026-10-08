@@ -13,7 +13,7 @@ test('create a review without an image', async ({ page }) => {
 // test('create a review with an image', async ({ page }) => {
 //     const reviewPage = new ReviewPage(page);
 //     const text = 'This is a test review'
-//     const imagePath = 'wbm-booking-app/my-booking-app/public/img1.png'
+//     const imagePath = 'public/img1.png'
 
 //     await page.goto('/reviews');
 //     await reviewPage.createReviewWithImage(text, imagePath);

@@ -26,7 +26,7 @@ npm install -D @playwright/test
 npx playwright install
 
 # Project structure
-my-booking-app/
+./
 ├── tests/
 │   ├── e2e/
 │   │   ├── auth/

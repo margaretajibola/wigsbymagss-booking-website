@@ -1,4 +1,4 @@
-# 💇♀️ Wigs by Magss – Booking Website
+# 💇‍♀️ Wigs by Magss – Booking Website
 
 A modern full-stack booking platform for wig and hair services, built with **Next.js**, **React**, **TypeScript**, **Tailwind CSS**, **Prisma**, and **PostgreSQL**.
 
@@ -29,12 +29,12 @@ It provides an intuitive interface for users and a management dashboard for the 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/margaretajibola/WigsbymagssBookingWebsite.git
+   git clone https://github.com/margaretajibola/wigsbymagss-booking-website.git
    ```
 
 2. Navigate into the project directory:
    ```bash
-   cd WigsbymagssBookingWebsite/my-booking-app
+   cd wigsbymagss-booking-website
    ```
 
 3. Install dependencies:
