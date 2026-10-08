@@ -42,8 +42,13 @@ export default defineConfig({
   ],
 
   webServer: {
-    command: 'npm run dev',
+    command: process.env.NODE_ENV === 'test' ? 'npm run start' : 'npm run dev',
     url: 'http://localhost:4000',
     reuseExistingServer: !process.env.CI,
+    env: {
+      DATABASE_URL: process.env.NODE_ENV === 'test' 
+        ? 'postgresql://magss:5TvCTH4jgtbwFC8jxyAv@localhost:5432/wbm_booking_app_test'
+        : process.env.DATABASE_URL || 'postgresql://magss:5TvCTH4jgtbwFC8jxyAv@localhost:5432/wbm_booking_app'
+    }
   },
 });

@@ -6,7 +6,11 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "postinstall": "prisma generate",
+    "lint": "eslint",
+    "test:setup": "node scripts/setup-test-db.js",
+    "test:db:reset": "dotenv -e .env.test -- npx prisma migrate reset --force",
+    "test:playwright": "dotenv -e .env.test -- npx playwright test"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
