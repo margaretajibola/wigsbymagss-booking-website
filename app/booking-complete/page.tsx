@@ -2,11 +2,11 @@
 "use client";
 
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { BookingWithDetails } from '@/types/booking';
 
-export default function BookingComplete() {
+function BookingCompleteContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const bookingId = searchParams.get('bookingId');
@@ -30,7 +30,7 @@ export default function BookingComplete() {
         {booking && (
           <div className="text-[#7a5490] mb-6">
             <p className="mb-2"><strong>Service:</strong> {booking.service.name}</p>
-            <p className="mb-2"><strong>Date:</strong> {new Date(booking.date).toLocaleDateString()}</p>
+            <p className="mb-2"><strong>Date:</strong> {new Date(booking.date).toLocaleDateString('en-US', { timeZone: 'UTC' })}</p>
             <p className="mb-2"><strong>Time:</strong> {booking.time}</p>
             <p className="mb-2"><strong>Price:</strong> ${booking.service.price}</p>
           </div>
@@ -43,5 +43,13 @@ export default function BookingComplete() {
         </button>
       </div>
     </div>
+  );
+}
+
+export default function BookingComplete() {
+  return (
+    <Suspense fallback={null}>
+      <BookingCompleteContent />
+    </Suspense>
   );
 }

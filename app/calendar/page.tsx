@@ -1,7 +1,7 @@
 // app/calendar/page.tsx
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { format } from "date-fns";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
@@ -14,7 +14,7 @@ const CalendarPicker = dynamic(() => import("@/components/calendar/CalendarPicke
   ssr: false,
 });
 
-export default function Calendar() {
+function CalendarContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const serviceId = searchParams.get('serviceId');
@@ -268,5 +268,11 @@ return (
   );
 }
 
-
+export default function Calendar() {
+  return (
+    <Suspense fallback={null}>
+      <CalendarContent />
+    </Suspense>
+  );
+}
 
