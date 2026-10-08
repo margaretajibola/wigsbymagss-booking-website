@@ -49,14 +49,14 @@ export default function AdminServices() {
 
     return (
         <div>
-            <h1 className="text-2xl font-medium mb-4 text-gray-600">Manage Services</h1>
+            <h1 className="page-heading">Manage Services</h1>
             <ServiceForm
             editingService={editingService}
             onSave={handleSave}
             onCancel={() => setEditingService(null)}
             />
 
-            <h1 className="text-2xl mb-4 text-gray-600">All services</h1>
+            <h2 className="section-heading mt-10">All Services</h2>
             <ServiceList
             services={services}
             onEdit={setEditingService}

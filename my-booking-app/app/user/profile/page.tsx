@@ -19,7 +19,7 @@ export default function UserProfile() {
   };
   return (
     <div>
-      <h1 className="text-2xl font-medium text-gray-600 mb-6">
+      <h1 className="page-heading">
         Update Profile
       </h1>
       <UpdateProfile user={user} onSubmit={handleUpdateName} />

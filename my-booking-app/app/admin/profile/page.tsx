@@ -19,7 +19,7 @@ export default function AdminProfile() {
   };
   return (
     <div>
-      <h1 className="text-2xl font-medium mb-4 text-gray-600">
+      <h1 className="page-heading">
         Update Profile
       </h1>
       <UpdateProfile user={user} onSubmit={handleUpdateName} />

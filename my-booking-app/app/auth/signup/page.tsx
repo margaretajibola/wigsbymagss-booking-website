@@ -29,12 +29,12 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
-        <h1 className="text-2xl text-center text-gray-800 mb-6">
+    <div className="min-h-screen flex items-center justify-center bg-[#fdf9fb] px-4">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-sm border border-[#e8d5f0] p-8">
+        <h1 className="font-display text-3xl text-center text-[#5b3d6b] mb-6">
           Hello Beauty!
         </h1>
-        <h2 className="text-xl text-center text-gray-800 mb-6">
+        <h2 className="font-nav text-sm text-center text-[#9b72a8] mb-6">
           Create Account
         </h2>
 
@@ -45,7 +45,7 @@ export default function SignupPage() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Name"
-            className="w-full px-4 py-2 border text-black placeholder-gray-400 border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-300 focus:outline-none"
+            className="w-full px-4 py-2 border text-[#2d2438] placeholder-[#b0a0bb] border-[#ddd0e8] rounded-lg focus:ring-2 focus:ring-[#c4a8d4] focus:outline-none"
           />
 
           <input
@@ -54,7 +54,7 @@ export default function SignupPage() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email"
-            className="w-full px-4 py-2 border text-black placeholder-gray-400 border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-300 focus:outline-none"
+            className="w-full px-4 py-2 border text-[#2d2438] placeholder-[#b0a0bb] border-[#ddd0e8] rounded-lg focus:ring-2 focus:ring-[#c4a8d4] focus:outline-none"
           />
 
           <input
@@ -63,23 +63,17 @@ export default function SignupPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
-            className="w-full px-4 py-2 border text-black placeholder-gray-400 border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-300 focus:outline-none"
+            className="w-full px-4 py-2 border text-[#2d2438] placeholder-[#b0a0bb] border-[#ddd0e8] rounded-lg focus:ring-2 focus:ring-[#c4a8d4] focus:outline-none"
           />
 
-          <button
-            type="submit"
-            className="w-full bg-purple-300 text-white font-semibold py-2 rounded-lg hover:bg-purple-500 transition"
-          >
+          <button type="submit" className="btn-primary w-full">
             Sign Up
           </button>
         </form>
 
-        <p className="text-center text-sm text-gray-600 mt-6">
+        <p className="text-center text-sm text-[#7a5490] mt-6">
           Already have an account?{" "}
-          <a
-            href="/auth/login"
-            className="text-purple-600 font-medium"
-          >
+          <a href="/auth/login" className="text-[#8b5e9b] font-medium">
             Log in
           </a>
         </p>

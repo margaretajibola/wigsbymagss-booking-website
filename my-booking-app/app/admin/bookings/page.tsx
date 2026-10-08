@@ -20,7 +20,7 @@ export default function AdminBookings() {
   }
   return (
     <div>
-      <h1 className="text-2xl font-medium mb-4 text-gray-600">View Bookings</h1>
+      <h1 className="page-heading">View Bookings</h1>
       {/* Add AllBookingsTable */}
       <BookingList bookings={bookings} />
     </div>

@@ -17,23 +17,36 @@ const policies: string[] = [
 
 export default function PoliciesPage() {
     return (
-        <div>
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
+            <h1 className="page-heading text-center">Booking Policies</h1>
+            <p className="text-gray-600 text-center mb-8">
+                Please read through before confirming your appointment.
+            </p>
             <List
                 sx={{
-                    listStyleType: 'disc', // or 'circle', 'square', etc.
-                    pl: 6, // Add some padding for the bullets
+                    backgroundColor: '#f5eefa',
+                    borderRadius: 3,
+                    p: { xs: 2, sm: 3 },
                     '& .MuiListItem-root': {
-                    display: 'list-item', // Ensure each ListItem behaves as a list item
-                    "&::marker": {
-                        color: "purple", // set bullet color
-                        fontSize: "1.5rem", // optional: make bullets bigger
-                        },
+                        py: 1,
+                        borderBottom: '1px solid #e8d5f0',
+                        '&:last-child': { borderBottom: 'none' },
                     },
                 }}
             >
                 {policies.map((item, index) => (
                 <ListItem key={index}>
-                    <ListItemText primary={item} sx={{color: "black"}}/>
+                    <ListItemText
+                        primary={item}
+                        sx={{
+                            '& .MuiListItemText-primary': {
+                                fontFamily: 'var(--font-cormorant)',
+                                fontSize: '1.1rem',
+                                color: '#2d2438',
+                                lineHeight: 1.75,
+                            }
+                        }}
+                    />
                 </ListItem>
                 ))}
             </List>

@@ -49,12 +49,12 @@ export default function Installations() {
     };
 
     return(
-        <Box sx={{p:6}}>
-            <Typography sx={{color: 'black', textTransform:'uppercase'}}>
-                SELECT SERVICE - INSTALLATIONS 
+        <Box sx={{p: {xs: 2, sm: 6}}}>
+            <Typography sx={{color: '#5b3d6b', fontFamily: 'var(--font-italiana), serif', fontSize: '2rem', mb: 1}}>
+                Select Service — Installations
             </Typography>
 
-            <ServiceCard 
+            <ServiceCard
                 services={services}
                 selectedService={selectedService}
                 setSelectedService={setSelectedService}
@@ -63,7 +63,7 @@ export default function Installations() {
             {/* Notes Field */}
             <Box sx={{ mt: 4, p: 2}}>
                 <TextField
-                sx={{width:350}}
+                sx={{width: {xs: '100%', sm: 350}}}
                 multiline
                 rows={4}
                 label="Additional Notes"
@@ -73,13 +73,13 @@ export default function Installations() {
             </Box>
 
             {/* Next Button */}
-            <Box sx={{ mt: 2, ml: 75 }}>
+            <Box sx={{ mt: 2, display: 'flex', justifyContent: 'flex-end' }}>
                 <button
                     disabled={!selectedService}
                     className={`p-3 rounded-full shadow-sm transition ${
                         selectedService
-                        ? "bg-purple-300 text-white hover:bg-purple-600"
-                        : "bg-gray-100 cursor-not-allowed text-gray-400"
+                        ? "bg-[#8b5e9b] text-white hover:bg-[#7a5490]"
+                        : "bg-[#ede8f0] cursor-not-allowed text-[#b0a0bb]"
                     }`}
                     aria-label="Next"
                     onClick={handleNext}

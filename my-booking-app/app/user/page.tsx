@@ -1,10 +1,11 @@
 // app/user/page.tsx
 
 "use client";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { BookingWithDetails } from "@/types/booking";
 import UserBookingList from "@/components/bookings/UserBookingList";
+import { getBookingDateTime } from "@/lib/date";
 
 export default function UserDashboard() {
   const [upcominguserbookings, setUpcomingUserBookings] = useState<BookingWithDetails[]>([]);
@@ -14,33 +15,25 @@ export default function UserDashboard() {
   const separateBookings = (bookings: BookingWithDetails[]) => {
     const now = new Date();
     
-    const upcoming = bookings.filter(booking => 
-      new Date(booking.date) >= now
+    const upcoming = bookings.filter(booking =>
+      getBookingDateTime(booking.date, booking.time) >= now
     );
-    
-    const past = bookings.filter(booking => 
-      new Date(booking.date) < now
+
+    const past = bookings.filter(booking =>
+      getBookingDateTime(booking.date, booking.time) < now
     );
     
     return { upcoming, past };
   };  
 
-  useEffect(() => {
-    // Fetch all bookings and filter by user
-    const fetchUserBookings = async () => {
-      const res = await fetch('/api/bookings');
-      const allBookings = await res.json();
-      
-      // Filter for current user's bookings
-      const userBookings = allBookings.filter((booking: BookingWithDetails) => 
-        booking.userId === user?.id
-      );
-      
-      return userBookings;
-    };
+  const fetchUserBookings = async () => {
+    const res = await fetch('/api/bookings');
+    const userBookings: BookingWithDetails[] = await res.json();
+    return userBookings;
+  };
 
-    if(user?.id) {
-      fetchUserBookings()
+  const refreshBookings = useCallback(() => {
+    fetchUserBookings()
       .then((userBookings) => {
         const { upcoming, past } = separateBookings(userBookings);
         setUpcomingUserBookings(upcoming);
@@ -49,22 +42,29 @@ export default function UserDashboard() {
       .catch((error) => {
         console.error("Error fetching bookings:", error);
       });
+  }, []);
+
+  useEffect(() => {
+    // The API already scopes results to the logged-in user
+    if (user?.id) {
+      refreshBookings();
     }
-  }, [user?.id]);
-    
+  }, [user?.id, refreshBookings]);
+
+
 
   // render protected content...
   return (
     <div>
-      <h1 className="text-2xl font-medium text-gray-600 mb-6">
+      <h1 className="page-heading">
         Upcoming Bookings ({upcominguserbookings.length})
       </h1>
-      <UserBookingList bookings={upcominguserbookings} />
+      <UserBookingList bookings={upcominguserbookings} onBookingUpdated={refreshBookings} />
 
-      <h1 className="text-2xl font-medium text-gray-600 mb-6">
+      <h2 className="section-heading mt-10">
         Past Bookings ({pastuserbookings.length})
-      </h1>
-      <UserBookingList bookings={pastuserbookings} />
+      </h2>
+      <UserBookingList bookings={pastuserbookings} onBookingUpdated={refreshBookings} />
 
     </div>
   );
