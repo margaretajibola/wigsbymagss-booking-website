@@ -12,13 +12,13 @@ interface CalendarPickerProps {
 
 export default function CalendarPicker({ selectedDate, onChange }: CalendarPickerProps) {
   return (
-    <div className="bg-purple-50 rounded-2xl p-6 shadow-sm">
+    <div className="bg-[#f5eefa] rounded-2xl p-6 shadow-sm">
       <Calendar
         onChange={(value) => onChange(value as Date)}
         value={selectedDate}
-        className="border-0 bg-transparent text-gray-700"
-        prevLabel={<span className="text-2xl text-gray-400">‹</span>}
-        nextLabel={<span className="text-2xl text-gray-400">›</span>}
+        className="border-0 bg-transparent text-[#2d2438]"
+        prevLabel={<span className="text-2xl text-[#9b72a8]">‹</span>}
+        nextLabel={<span className="text-2xl text-[#9b72a8]">›</span>}
       />
     </div>
   );

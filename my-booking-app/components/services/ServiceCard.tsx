@@ -15,8 +15,8 @@ export default function ServiceCard({ services, selectedService, setSelectedServ
           <Card
             sx={{
               borderRadius: "16px",
-              background: selectedService === service.id ? "#E1BEE7" : "#F3E5F5", 
-              width: 500, 
+            background: selectedService === service.id ? "#e8d5f0" : "#f5eefa",
+              width: { xs: '100%', sm: 500 },
               height: 100
             }}>
             <CardActionArea 
@@ -24,13 +24,13 @@ export default function ServiceCard({ services, selectedService, setSelectedServ
               sx={{
                 height: "100%",
                 "&:hover": {
-                  backgroundColor: "#EDE7F6",
+                  backgroundColor: "#ede0f5",
                 },
               }}>
               <CardContent>
-                <Typography variant="body1"> Service Type: {service.name}</Typography>
-                <Typography variant="body1"> Price: {service.price} CAD</Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body1" sx={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.1rem', color: '#2d2438' }}>{service.name}</Typography>
+                <Typography variant="body1" sx={{ fontFamily: 'var(--font-cormorant)', fontSize: '1rem', color: '#7a5490' }}>${service.price} CAD</Typography>
+                <Typography variant="body2" sx={{ fontFamily: 'var(--font-cormorant)', color: '#9b72a8' }}>
                   {service.extraNotes}
                 </Typography>
               </CardContent>

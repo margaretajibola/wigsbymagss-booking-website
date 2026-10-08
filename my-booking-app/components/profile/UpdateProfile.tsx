@@ -21,30 +21,30 @@ export default function UpdateProfile({ user, onSubmit }: UpdateProfileProps) {
   return (
     <form onSubmit={handleSubmit}>
       <div className="mb-4">
-        <label className="text-lg font-medium text-gray-600 mb-6">Email</label>
+        <label className="text-lg font-medium text-[#5b3d6b] mb-6">Email</label>
         <input
           type="email"
           value={user?.email || ""}
           readOnly
-          className="w-full p-2 border rounded bg-gray-100 text-gray-600"
+          className="w-full p-2 border border-[#ddd0e8] rounded bg-[#f5eefa] text-[#7a5490]"
         />
       </div>
 
       <div className="mb-4">
-        <label className="text-lg font-medium text-gray-600 mb-6">Name</label>
+        <label className="text-lg font-medium text-[#5b3d6b] mb-6">Name</label>
         <input
           type="text"
           value={name}
           placeholder={user?.name}
           onChange={(e) => setName(e.target.value)}
-          className="w-full p-2 border rounded text-gray-600"
+          className="w-full p-2 border border-[#ddd0e8] rounded text-[#2d2438] placeholder-[#b0a0bb] focus:ring-2 focus:ring-[#c4a8d4] focus:outline-none"
           required
         />
       </div>
 
       <button
         type="submit"
-        className="w-32 bg-purple-300 text-white py-2 rounded hover:bg-purple-400"
+        className="btn-primary w-48"
       >
         Update Profile
       </button>

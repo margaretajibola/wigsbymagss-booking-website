@@ -52,7 +52,7 @@ export default function ServiceForm({ editingService, onSave, onCancel }: Props)
   return (
     <form
       onSubmit={handleSubmit}
-      className="grid grid-cols-2 gap-4 mb-8 bg-purple-50 p-6 rounded-lg shadow-sm"
+      className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 bg-[#f5eefa] p-6 rounded-lg shadow-sm"
     >
         <input
             id="name"
@@ -60,7 +60,7 @@ export default function ServiceForm({ editingService, onSave, onCancel }: Props)
             placeholder="Enter Service Name"
             value={form.name}
             onChange={e => setForm({ ...form, name: e.target.value })}
-            className="border p-2 rounded text-black"
+            className="border border-[#ddd0e8] p-2 rounded text-[#2d2438] placeholder-[#b0a0bb] focus:ring-2 focus:ring-[#c4a8d4] focus:outline-none"
         />
         <input
             id="price"
@@ -69,21 +69,21 @@ export default function ServiceForm({ editingService, onSave, onCancel }: Props)
             placeholder="Enter Price"
             value={form.price}
             onChange={e => setForm({ ...form, price: e.target.value })}
-            className="border p-2 rounded text-black"
+            className="border border-[#ddd0e8] p-2 rounded text-[#2d2438] placeholder-[#b0a0bb] focus:ring-2 focus:ring-[#c4a8d4] focus:outline-none"
         />
         <input
             id="extraNotes"
             placeholder="Enter Extra Notes"
             value={form.extraNotes}
             onChange={e => setForm({ ...form, extraNotes: e.target.value })}
-            className="border p-2 rounded text-black"
+            className="border border-[#ddd0e8] p-2 rounded text-[#2d2438] placeholder-[#b0a0bb] focus:ring-2 focus:ring-[#c4a8d4] focus:outline-none"
         />
         <select
             id="category"
             required
             value={form.category}
             onChange={e => setForm({ ...form, category: e.target.value })}
-            className="border p-2 rounded bg-white text-black"
+            className="border border-[#ddd0e8] p-2 rounded bg-white text-[#2d2438] focus:ring-2 focus:ring-[#c4a8d4] focus:outline-none"
             >
             <option value="">Select Category</option>
             <option value="Installations">Installations</option>
@@ -91,17 +91,17 @@ export default function ServiceForm({ editingService, onSave, onCancel }: Props)
             <option value="Other Services">Other Services</option>
         </select>
 
-        <div className="col-span-2 flex justify-between">
+        <div className="col-span-1 sm:col-span-2 flex justify-between">
             <button
             type="button"
             onClick={onCancel}
-            className="bg-purple-400 text-black py-2 px-2 rounded hover:bg-purple-200 transition"
+            className="btn-secondary"
             >
             Cancel
             </button>
             <button
             type="submit"
-            className="bg-purple-400 text-black py-2 px-2 rounded hover:bg-purple-200 transition"
+            className="btn-primary"
             >
             {editingService ? "Update Service" : "Create Service"}
             </button>
