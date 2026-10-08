@@ -50,7 +50,7 @@ export default function Profile() {
         aria-haspopup="true"
         onClick={handleClick}
       >
-        <AccountCircleIcon />
+        <AccountCircleIcon sx={{ color: '#f9f0fb' }} />
       </IconButton>
 
       <Menu
@@ -59,7 +59,7 @@ export default function Profile() {
         list: { 
           'aria-labelledby': 'account-button', 
           sx:{
-            backgroundColor: "#F3E5F5",
+            backgroundColor: "#5a3f61",
           }
         } 
       }}
@@ -67,8 +67,8 @@ export default function Profile() {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleLogout}>Logout</MenuItem>
-        <MenuItem onClick={handleDashboard}>Dashboard</MenuItem>
+        <MenuItem onClick={handleLogout} sx={{ fontFamily: 'var(--font-julius)', fontSize: '0.8rem', letterSpacing: '0.05em', color: '#f9f0fb', '&:hover': { backgroundColor: '#4e3555' } }}>Logout</MenuItem>
+        <MenuItem onClick={handleDashboard} sx={{ fontFamily: 'var(--font-julius)', fontSize: '0.8rem', letterSpacing: '0.05em', color: '#f9f0fb', '&:hover': { backgroundColor: '#4e3555' } }}>Dashboard</MenuItem>
       </Menu>
     </div>
   );
