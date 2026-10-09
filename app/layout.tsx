@@ -26,8 +26,8 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "My Booking App",
-  description: "Booking website with Next.js",
+  title: "Wigs by Magss",
+  description: "Book wig and hair services with Wigs by Magss.",
 };
 
 export default function RootLayout({
