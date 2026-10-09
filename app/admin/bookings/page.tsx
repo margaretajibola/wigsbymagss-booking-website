@@ -15,8 +15,12 @@ export default function AdminBookings() {
 
   async function fetchBookings() {
       const res = await fetch("/api/bookings");
+      if (!res.ok) {
+        console.error("Failed to load bookings:", res.status);
+        return;
+      }
       const data = await res.json();
-      setBookings(data);
+      setBookings(Array.isArray(data) ? data : []);
   }
   return (
     <div>

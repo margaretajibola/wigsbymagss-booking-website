@@ -26,10 +26,11 @@ export default function UserDashboard() {
     return { upcoming, past };
   };  
 
-  const fetchUserBookings = async () => {
+  const fetchUserBookings = async (): Promise<BookingWithDetails[]> => {
     const res = await fetch('/api/bookings');
-    const userBookings: BookingWithDetails[] = await res.json();
-    return userBookings;
+    if (!res.ok) return [];
+    const data = await res.json();
+    return Array.isArray(data) ? data : [];
   };
 
   const refreshBookings = useCallback(() => {

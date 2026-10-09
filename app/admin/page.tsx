@@ -23,9 +23,15 @@ export default function AdminDashboard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    async function parseOrEmpty(res: Response) {
+      if (!res.ok) return [];
+      const data = await res.json();
+      return Array.isArray(data) ? data : [];
+    }
+
     Promise.all([
-      fetch("/api/bookings").then(res => res.json()),
-      fetch("/api/services").then(res => res.json()),
+      fetch("/api/bookings").then(parseOrEmpty),
+      fetch("/api/services").then(parseOrEmpty),
     ])
       .then(([bookingsData, servicesData]) => {
         setBookings(bookingsData);
